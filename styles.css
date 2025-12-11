@@ -2322,3 +2322,46 @@ html {
         font-size: 2.5rem;
     }
 }
+
+/* ============================================
+   PHASE 5: FORM MESSAGE STYLES
+   ============================================ */
+
+/* Form Messages */
+.form-message {
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+    font-weight: 500;
+    animation: slideInDown 0.3s ease;
+}
+
+.form-message-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.form-message-error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading state for buttons */
+button:disabled,
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

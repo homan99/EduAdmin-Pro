@@ -453,3 +453,121 @@ document.querySelectorAll('.faq-question').forEach(button => {
 });
 
 console.log('?? Phase 2: New sections loaded');
+
+// ============================================
+// PHASE 5: CONTACT FORM VALIDATION
+// ============================================
+
+// Contact Form Handler
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            school: document.getElementById('school').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+        
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$;
+        if (!emailRegex.test(formData.email)) {
+            showFormMessage('Please enter a valid email address.', 'error');
+            return;
+        }
+        
+        // Validate message length
+        if (formData.message.length < 10) {
+            showFormMessage('Please provide a more detailed message (at least 10 characters).', 'error');
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission (in production, send to your backend)
+        setTimeout(() => {
+            // Success message
+            showFormMessage('Thank you! Your message has been sent. We\'ll get back to you within 24 hours.', 'success');
+            contactForm.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            
+            // Log to analytics if available
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    'event_category': 'Contact',
+                    'event_label': formData.subject
+                });
+            }
+        }, 1500);
+    });
+}
+
+// Show form message helper
+function showFormMessage(message, type) {
+    // Remove existing message
+    const existingMsg = document.querySelector('.form-message');
+    if (existingMsg) existingMsg.remove();
+    
+    // Create message element
+    const msgDiv = document.createElement('div');
+    msgDiv.className = orm-message form-message-;
+    msgDiv.textContent = message;
+    
+    // Insert before form
+    contactForm.insertAdjacentElement('beforebegin', msgDiv);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        msgDiv.remove();
+    }, 5000);
+}
+
+// Newsletter Form Handler
+const newsletterForms = document.querySelectorAll('.cta-form');
+newsletterForms.forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const emailInput = form.querySelector('input[type="email"]');
+        const email = emailInput.value;
+        
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+        
+        // Show success
+        const btn = form.querySelector('.btn');
+        const originalText = btn.textContent;
+        btn.textContent = 'Subscribed! ?';
+        btn.style.background = '#10b981';
+        emailInput.value = '';
+        
+        // Log to analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'newsletter_signup', {
+                'event_category': 'Newsletter'
+            });
+        }
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = '';
+        }, 3000);
+    });
+});
+
+console.log('?? Phase 5: Form handlers loaded');

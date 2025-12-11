@@ -278,7 +278,8 @@ if (dashboardPreview) {
         const rotateX = (y - centerY) / 20;
         const rotateY = (centerX - x) / 20;
 
-        dashboardPreview.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        // Simplified hover - just a subtle lift
+        dashboardPreview.style.transform = 'translateY(-4px) scale(1.01)';
     });
 
     dashboardPreview.addEventListener('mouseleave', () => {

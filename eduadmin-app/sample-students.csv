@@ -1,0 +1,11 @@
+first_name,last_name,email,phone,gender,grade_level,student_id,parent_name,parent_email
+Alice,Smith,alice@student.edu,(555) 123-4567,Female,Grade 7,STD-101,Mary Smith,mary@email.com
+Bob,Jones,bob@student.edu,(555) 234-5678,Male,Grade 8,STD-102,John Jones,john@email.com
+Charlie,Brown,charlie@student.edu,(555) 345-6789,Male,Grade 6,STD-103,Lucy Brown,lucy@email.com
+Diana,Prince,diana@student.edu,(555) 456-7890,Female,Grade 9,STD-104,Steve Prince,steve@email.com
+Emma,Wilson,emma@student.edu,(555) 567-8901,Female,Grade 7,STD-105,Sarah Wilson,sarah@email.com
+Frank,Miller,frank@student.edu,(555) 678-9012,Male,Grade 8,STD-106,Lisa Miller,lisa@email.com
+Grace,Davis,grace@student.edu,(555) 789-0123,Female,Grade 6,STD-107,Tom Davis,tom@email.com
+Henry,Martinez,henry@student.edu,(555) 890-1234,Male,Grade 9,STD-108,Anna Martinez,anna@email.com
+Ivy,Garcia,ivy@student.edu,(555) 901-2345,Female,Grade 7,STD-109,Mike Garcia,mike@email.com
+Jack,Anderson,jack@student.edu,(555) 012-3456,Male,Grade 8,STD-110,Beth Anderson,beth@email.com

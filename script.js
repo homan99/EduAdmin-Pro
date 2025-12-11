@@ -13,7 +13,7 @@ if (mobileMenuBtn) {
 
 // Smooth Scroll for Navigation Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -226,3 +226,205 @@ document.querySelectorAll('.pricing-card').forEach(card => {
 });
 
 console.log('EduAdmin Pro - Website loaded successfully');
+
+// ============================================
+// PHASE 1: ENHANCED INTERACTIONS
+// ============================================
+
+// Parallax Effect for Hero Section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const heroImage = document.querySelector('.hero-image');
+    const heroContent = document.querySelector('.hero-content');
+
+    if (heroImage && scrolled < 800) {
+        heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+
+    if (heroContent && scrolled < 800) {
+        heroContent.style.transform = `translateY(${scrolled * -0.1}px)`;
+    }
+});
+
+// Enhanced Scroll Reveal with Intersection Observer
+const revealElements = document.querySelectorAll('.benefits-content, .cta-content');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.15 });
+
+revealElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+    revealObserver.observe(el);
+});
+
+// Interactive Dashboard Preview
+const dashboardPreview = document.querySelector('.dashboard-preview');
+if (dashboardPreview) {
+    dashboardPreview.addEventListener('mousemove', (e) => {
+        const rect = dashboardPreview.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+
+        dashboardPreview.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    });
+
+    dashboardPreview.addEventListener('mouseleave', () => {
+        dashboardPreview.style.transform = '';
+    });
+}
+
+// Animated Number Counters for Stats (Enhanced)
+const animateValue = (element, start, end, duration) => {
+    const range = end - start;
+    const increment = range / (duration / 16);
+    let current = start;
+
+    const timer = setInterval(() => {
+        current += increment;
+        if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+            element.textContent = Math.round(end).toLocaleString();
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.round(current).toLocaleString();
+        }
+    }, 16);
+};
+
+// Trigger number animation on scroll
+const numberObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const element = entry.target;
+            const text = element.getAttribute('data-count') || element.textContent;
+            const number = parseInt(text.replace(/[^0-9]/g, ''));
+
+            if (!isNaN(number)) {
+                element.textContent = '0';
+                setTimeout(() => {
+                    animateValue(element, 0, number, 2000);
+                }, 200);
+            }
+
+            numberObserver.unobserve(element);
+        }
+    });
+}, { threshold: 0.5 });
+
+// Observe stat numbers
+document.querySelectorAll('.dash-card-number').forEach(el => {
+    el.setAttribute('data-count', el.textContent);
+    numberObserver.observe(el);
+});
+
+// Smooth Active Navigation Highlighting
+const sections = document.querySelectorAll('section[id]');
+const navLinkElements = document.querySelectorAll('.nav-links a[href^="#"]');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinkElements.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Add active class style
+const activeStyle = document.createElement('style');
+activeStyle.textContent = `
+    .nav-links a.active {
+        color: var(--primary);
+    }
+`;
+document.head.appendChild(activeStyle);
+
+// Button Click Ripple Effect
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', function (e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple-effect');
+
+        this.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 600);
+    });
+});
+
+// Add ripple effect style
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    .ripple-effect {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        transform: scale(0);
+        animation: ripple 0.6s ease-out;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+// Loading Progress Bar
+window.addEventListener('load', () => {
+    const progressBar = document.createElement('div');
+    progressBar.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--gradient);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+        z-index: 9999;
+    `;
+    document.body.appendChild(progressBar);
+
+    window.addEventListener('scroll', () => {
+        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (window.pageYOffset / windowHeight);
+        progressBar.style.transform = `scaleX(${scrolled})`;
+    });
+});
+
+console.log('🎨 Enhanced design features loaded');
+

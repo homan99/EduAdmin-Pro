@@ -1745,3 +1745,269 @@ html {
         font-size: 0.875rem;
     }
 }
+
+/* ============================================
+   PHASE 3: ENHANCED RESPONSIVE DESIGN
+   ============================================ */
+
+/* Better Touch Targets for Mobile */
+@media (max-width: 768px) {
+    .btn {
+        min-height: 48px;
+        padding: 14px 24px;
+    }
+    
+    .faq-question {
+        min-height: 56px;
+        padding: 16px 20px;
+    }
+    
+    .nav-links a,
+    .footer-links a {
+        padding: 8px 0;
+        display: block;
+    }
+}
+
+/* Improved Mobile Navigation */
+@media (max-width: 768px) {
+    .nav-container {
+        height: 64px;
+    }
+    
+    .logo {
+        font-size: 1.125rem;
+    }
+    
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Fluid Typography */
+@media (max-width: 768px) {
+    h1 {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+        line-height: 1.2;
+    }
+    
+    h2 {
+        font-size: clamp(1.75rem, 6vw, 2.25rem);
+    }
+    
+    h3 {
+        font-size: 1.125rem;
+    }
+    
+    body {
+        font-size: 15px;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+}
+
+/* Better Spacing for Small Screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    section {
+        padding: 60px 0 !important;
+    }
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .hero {
+        padding: 100px 0 50px !important;
+    }
+}
+
+/* Improved Card Spacing */
+@media (max-width: 768px) {
+    .feature-card,
+    .testimonial-card,
+    .pricing-card,
+    .blog-card,
+    .step-card {
+        padding: 24px 20px;
+    }
+    
+    .benefits-list {
+        gap: 20px;
+    }
+    
+    .benefit-item {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+/* Mobile-Optimized Forms */
+@media (max-width: 768px) {
+    input[type="email"],
+    input[type="text"],
+    textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 14px 16px;
+    }
+    
+    .cta-form {
+        gap: 12px;
+    }
+    
+    .cta-form .btn {
+        width: 100%;
+    }
+}
+
+/* Better Mobile Dashboard Preview */
+@media (max-width: 768px) {
+    .dashboard-preview {
+        box-shadow: var(--shadow);
+    }
+    
+    .dashboard-content {
+        padding: 16px;
+        gap: 12px;
+    }
+    
+    .dash-card {
+        padding: 12px;
+    }
+    
+    .chart-bar {
+        height: 60px !important;
+    }
+}
+
+/* Tablet Optimizations (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 0 32px;
+    }
+    
+    .features-grid,
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    
+    .hero-description {
+        max-width: 100%;
+    }
+}
+
+/* Landscape Mobile Adjustments */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero {
+        padding: 80px 0 40px !important;
+    }
+    
+    .hero-stats {
+        flex-direction: row !important;
+        gap: 32px !important;
+    }
+}
+
+/* Hide Hover Effects on Touch Devices */
+@media (hover: none) {
+    .feature-card:hover,
+    .blog-card:hover,
+    .pricing-card:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+}
+
+/* Improve Readability */
+@media (max-width: 768px) {
+    .testimonial-text,
+    .faq-answer p,
+    .blog-card p {
+        font-size: 0.9375rem;
+        line-height: 1.7;
+    }
+    
+    .stat-label,
+    .blog-meta {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Better Mobile Footer */
+@media (max-width: 768px) {
+    .footer {
+        padding: 60px 0 32px;
+    }
+    
+    .footer-brand p {
+        font-size: 0.9375rem;
+    }
+    
+    .footer-links h4 {
+        margin-bottom: 16px;
+        font-size: 1rem;
+    }
+}
+
+/* Optimize Testimonial Stars */
+@media (max-width: 768px) {
+    .testimonial-stars {
+        font-size: 1.125rem;
+    }
+    
+    .author-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 0.875rem;
+    }
+}
+
+/* Better Step Cards on Mobile */
+@media (max-width: 768px) {
+    .step-number {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        top: -18px;
+    }
+    
+    .step-icon {
+        width: 56px;
+        height: 56px;
+        margin: 12px auto 16px;
+    }
+}
+
+/* Prevent Text Selection on UI Elements */
+.btn,
+.faq-question,
+.nav-links a,
+.logo {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth Scrolling Performance */
+@media (max-width: 768px) {
+    * {
+        -webkit-overflow-scrolling: touch;
+    }
+}

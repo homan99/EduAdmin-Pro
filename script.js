@@ -429,3 +429,27 @@ window.addEventListener('load', () => {
 
 console.log('🎨 Enhanced design features loaded');
 
+
+// ============================================
+// PHASE 2: FAQ ACCORDION FUNCTIONALITY
+// ============================================
+
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Toggle current item
+        if (!isActive) {
+           faqItem.classList.add('active');
+        }
+    });
+});
+
+console.log('?? Phase 2: New sections loaded');
